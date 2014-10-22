@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC -//W3C//DTD XHTML 1.0 Transitional//EN http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
+<html xmlns=http://www.w3.org/1999/xhtml>
+<head>
+<meta http-equiv=Content-Type content=text/html; charset=utf-8 />
+<title>嵌入内容</title>
+<link href="css3.css" rel ="stylesheet" type="text/css">
+<style type=text/css>
+img{
+	padding:5px;
+	border:solid 1px #666;
+	text-align:center;
+	width:auto;
+	height:30px
+	}
+#iframe{
+	display:none
+	}
+</style>
+</head>
+
+<body>
+<a href=javascript:void(0)>
+<img src=img/1.jpg alt=HTML 5下的图片 />
+</a>
+
+<input type="button" title="sandbox包含属性：allow-forms/allow-same-origin/allow-scripts/allow-top-navigation" value="iframe" onclick="Btn_Click();" class="inputbtn">
+<iframe id="iframe" src=progress.html sandbox=allow-scripts ></iframe>
+<object data="/*../../../桌面/hifi raver.wav" title="定义和用法
+定义一个嵌入的对象。请使用此元素向您的 XHTML 页面添加多媒体。此元素允许您规定插入 HTML 文档中的对象的数据和参数，以及可用来显示和操作数据的代码。
+<object> 标签用于包含对象，比如图像、音频、视频、Java applets、ActiveX、PDF 以及 Flash。
+object 的初衷是取代 img 和 applet 元素。不过由于漏洞以及缺乏浏览器支持，这一点并未实现。
+浏览器的对象支持有赖于对象类型。不幸的是，主流浏览器都使用不同的代码来加载相同的对象类型。
+而幸运的是，object 对象提供了解决方案。如果未显示 object 元素，就会执行位于 <object> 和 </object> 之间的代码。通过这种方式，我们能够嵌套多个 object 元素（每个对应一个浏览器）。"></object>
+
+<script type="text/javascript" async="true">
+	function Btn_Click(){
+		var iframe=document.getElementById("iframe");
+		iframe.style.display="block";
+	}/*async同步异步*/
+</script>
+
+</body>
+</html>
