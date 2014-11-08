@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>html5中文件</title>
+<script type="text/javascript" language="javascript">
+function $$(id){
+	return document.getElementById(id);
+	}
+//使用Blob接口获取文件的类型与大小
+function fileUpload_GetFileList(f){
+	var strLi="<li class='li'>";
+	strLi+="<span>文件名称 </span>";
+	strLi+="<span>文件类型 </span>";
+	strLi+="<span>文件大小</span>";
+	strLi+="</li>";
+	for(var intI=0;intI<f.length;intI++){
+		var tmpFile=f[intI];
+		strLi+="<li>";
+		strLi+="<span>"+tmpFile.name+"</span>";
+		strLi+="<span>"+tmpFile.type+"</span>";
+		strLi+="<span>"+tmpFile.size+"</span>";
+		strLi+="</li>";
+		}
+	
+	$$("ulUpload1").innerHTML=strLi;
+	}
+//通过类型过滤选择的文件
+function fileUpload_CheckType(f){
+	var strP="";
+	strN="";
+	intJ=0;
+	var strFileType=/image.*/;
+	for(var intI=0;intI<f.length;intI++){
+		var tmpFile=f[intI];
+		if(!tmpFile.type.match(strFileType)){
+			intJ++;
+			strN=strN+tmpFile.name+"<br>";
+		}
+	}
+	strP="检测到("+intJ+")个非图片格式文件。";
+	if(intJ>0){
+		strP=strP+"文件名如下：<p>"+strN+"</p>";	
+	}
+	$$("pTip").innerHTML=strP;
+}
+//选择上传文件是调用的函数
+function fileUpload_PrevImageFile(f){
+	//检测浏览器是否支持FileReader对象
+	if(typeof FileReader == 'undefined'){
+		alert("检测到您的浏览器不支持FIleReader对象！");
+	}
+	var strHTML="";
+	for(var intI=0;intI<f.length;intI++){
+		var tmpFile=f[intI];
+		var reader=new FileReader();
+		reader.readAsDataURL(tmpFile);
+		reader.onload=function(e){
+			strHTML+="<span>";
+			strHTML+="<img scr='"+e.target.result+"' alt=''/>";
+			strHTML+="</span>";
+			$$("ulUpload2").innerHTML="<li>"+strHTML+"</li>";	
+		}
+	}
+}
+//选择上传文件时调用的函数
+function fileUpload_ReadTxtFile(f){
+	//检测浏览器是否支持FileReader对象
+	if(typeof FileReader == 'undefined'){
+		alert("检测到您的浏览器不支持FIleReader对象！");
+	}
+	var tmpFile=f[0];
+	var reader=new FileReader();
+	reader.readAsText(tmpFile);
+	reader.onload=function(e){
+		$$("artShow").innerHTML="<pre>"+e.target.result+"</pre>";
+	}
+}
+</script>
+<style type="text/css">
+img{
+	height:inherit;
+	min-height:300px;
+	min-width:300px;
+	
+	}
+</style>
+</head>
+
+<body>
+
+<form id="frmTmp">
+<fieldset>
+<legend>上传多个文件：</legend>
+<input type="file" name="fileUpload" id="fileUpload" multiple="true" onChange="fileUpload_GetFileList(this.files)"/>
+<ul id="ulUpload1"></ul>
+</fieldset>
+</form>
+
+<form id="frmTmp">
+<fieldset>
+<legend>上传过滤类型后的文件：</legend>
+<input type="file" name="fileUpload" id="fileUpload" multiple="true" onChange="fileUpload_CheckType(this.files)"/>
+<ul id="pTip"></ul>
+</fieldset>
+</form>
+
+<form id="frmTmp">
+<fieldset>
+<legend>选择某类型上传文件：</legend>
+<input type="file" name="fileUpload" id="fileUpload" multiple="true" accept="image/gif"/>
+</fieldset>
+</form>
+
+<form id="frmTmp">
+<fieldset>
+<legend>预览图片文件：//没有预览显示</legend>
+<input type="file" name="fileUpload" id="fileUpload" multiple="true" onChange="fileUpload_PrevImageFile(this.files);"/>
+<ul id="ulUpload2"></ul>
+</fieldset>
+</form>
+
+<form id="frmTmp">
+<fieldset>
+<legend>读取文本文件：</legend>
+<input type="file" name="fileUpload" id="fileUpload" multiple="true" onChange="fileUpload_ReadTxtFile(this.files);"/>
+<article id="artShow"></article>
+</fieldset>
+</form>
+
+</body>
+</html>

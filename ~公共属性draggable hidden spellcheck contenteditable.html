@@ -19,32 +19,29 @@ function Btn_Click(){
 
 <body>
 <ol>
-<li draggable="true">draggable属性</li>
-<li>
-<nav style="padding-top:5px;padding-bottom:5px">
-	<input type="radio" id="rdoHidden_1" onclick="Rdo_Click(1)" name="rdoHidden" value="1" checked="checked"/>显示
-    <input type="radio" id="rdoHidden_2" onclick="Rdo_Click(0)" name="rdoHidden" value="0" />隐藏
-</nav>
-</li>
-<li id="art" title="无法从隐藏变回显示">hidden属性</li>
-<li>
-<p>spellcheck属性</p>
-<p>需要检测：<br/>
-<textarea spellcheck="true" class="inputtxt"  title="极速浏览器不支持"></textarea>
-</p>
-<p>不需要检测：<br/>
-<textarea spellcheck="false" class="inputtxt"></textarea>
-</p>
-</li>
-<li>
-contenteditable属性
-<article contenteditable="true" id="art_0">
-一段可编辑的文字
-</article>
-<article  id="art_1">
-</article>
-<input type="button" value="保存" onclick="Btn_Click();">
-</li>
+  <li draggable="true">draggable属性</li>
+  <li>
+    <nav style="padding-top:5px;padding-bottom:5px">
+      <input type="radio" id="rdoHidden_1" onclick="Rdo_Click(1)" name="rdoHidden" value="1" checked="checked"/>
+      显示
+      <input type="radio" id="rdoHidden_2" onclick="Rdo_Click(0)" name="rdoHidden" value="0" />
+      隐藏 </nav>
+  </li>
+  <li id="art" title="无法从隐藏变回显示">hidden属性//隐藏后无法显示</li>
+  <li>
+    <p>spellcheck属性</p>
+    <p>需要检测：<br/>
+      <textarea spellcheck="true" class="inputtxt"  title="极速浏览器不支持"></textarea>
+    </p>
+    <p>不需要检测：<br/>
+      <textarea spellcheck="false" class="inputtxt"></textarea>
+    </p>
+  </li>
+  <li> contenteditable属性
+    <article contenteditable="true" id="art_0"> 一段可编辑的文字 </article>
+    <article  id="art_1"> </article>
+    <input type="button" value="保存" onclick="Btn_Click();">
+  </li>
 </ol>
 </body>
 </html>

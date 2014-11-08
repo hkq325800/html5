@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="Css/css4.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="javascript">
+function $$(id){
+	return document.getElementById(id);
+	}
+function chkPassWord(){
+	var $$Pass=$$("txtPassWord");
+	var $$spnP=$$("spnPassWord");
+	var strP;
+	if($$Pass.checkValidity()){
+		strP="√";
+	}
+	else{
+		strP="×";
+	}
+	$$spnP.innerHTML=strP;
+	return false;
+}
+	
+function setErrorInfo(){
+	var $$Pass_1=$$("txtPassWord_1");
+	var $$Pass_2=$$("txtPassWord_2");
+	if($$Pass_1.value==$$Pass_2.value){
+		$$Pass_2.setCustomValidity("√,相同");
+		}
+	else {
+		$$Pass_2.setCustomValidity("×,不同");
+		}                                                                                                                                       
+}
+</script>
+<title>表单新增的验证方法和属性</title>
+</head>
+
+<body>
+<form id="frmTmp" onSubmit="return chkPassWord()">
+<fieldset>
+<legend>checkValidity()方法</legend>
+<p>输入密码：
+<input type="password" name="txtPassWord" id="txtPassWord" class="inputtxt" 
+pattern="^[a-zA-Z]\w{5,7}$" required />
+<span id="spnPassWord"></span></p>
+<p class="p_center">
+<input type="submit" class="inputbtn" name="frmSubmit" value="确定" />
+</p>
+</fieldset>
+</form>
+
+<form id="frmTmp1" onSubmit="return setErrorInfo()">
+<fieldset>
+<legend>setCustomValidity()方法</legend>
+<p>输入密码：
+<input type="password" name="txtPassWord_1" id="txtPassWord_1" class="inputtxt" 
+pattern="^[a-zA-Z]\w{5,7}$" required />*
+</p>
+<p>再次输入：
+<input type="password" name="txtPassWord_2" id="txtPassWord_2" class="inputtxt" 
+pattern="^[a-zA-Z]\w{5,7}$" required />*
+</p>
+<p class="p_center1">
+<input type="submit" class="inputbtn" name="frmSubmit1" value="确定" />
+</p>
+</fieldset>
+</form>
+
+<form id="frmTmp" novalidate="true" title="<form novalidate='true'></form>">表单中元素不经过验证而直接提交给服务器
+</form>
+</body>
+</html>

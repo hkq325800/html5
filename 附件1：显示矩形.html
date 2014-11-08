@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript">
+function $$(id){
+	return document.getElementById(id);
+	}
+var intR,intG,intB,strColor;
+function setSpnColor(){
+	intR=$$("txtR").value;
+	intG=$$("txtG").value;
+	intB=$$("txtB").value;
+	strColor="rgb("+intR+","+intG+","+intB+")";
+	$$("pColor").innerHTML=strColor;
+	$$("spnPrev").style.backgroundColor=strColor;
+	$$("spnPrev").style.width="100px";
+	}
+setSpnColor();	
+</script>
+
+<style type="text/css">
+#spnPrev
+{
+	border: 0px;
+}
+
+</style>
+
+<body>
+
+<form id="frmTmp4">
+<fieldset>
+<legend>选择颜色值：//无法将span设置为一个大矩形以显示颜色</legend>
+<span id="spnColor">
+<input type="range" id="txtR" min="0" max="255" value="255" onChange="setSpnColor()"/>
+<input type="range" id="txtG" min="0" max="255" value="255" onChange="setSpnColor()"/>
+<input type="range" id="txtB" min="0" max="255" value="255" onChange="setSpnColor()"/>
+</span>
+
+<input type="text" id="spnPrev"></input>
+
+<P id="pColor">rgb(255,255,255)</P>
+</fieldset>
+</form>
+
+</body>
+</html>

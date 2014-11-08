@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>input元素新增类型</title>
+<link href="Css/css4.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" language="javascript">
+function $$(id){
+	return document.getElementById(id);
+	}
+var intR,intG,intB,strColor;
+function setSpnColor(){
+	intR=$$("txtR").value;
+	intG=$$("txtG").value;
+	intB=$$("txtB").value;
+	strColor="rgb("+intR+","+intG+","+intB+")";
+	$$("pColor").innerHTML=strColor;
+	$$("spnPrev").style.backgroundColor=strColor;
+	}
+setSpnColor();
+
+</script>
+</head>
+
+<body>
+<form id="frmTmp1">
+<fieldset>
+<legend>请输入邮件地址：</legend>
+<input type="email" name="txtEmail" class="inputtxt" multiple="true" />
+<input type="submit" name="frmSubmit1" class="inputbtn" value="提交" />
+</fieldset>
+</form>
+
+<form id="frmTmp2">
+<fieldset>
+<legend>请输入网址：</legend>
+<input type="url" name="txtUrl" class="inputtxt" />
+<input type="submit" name="frmSubmit2" class="inputbtn" value="提交" />
+</fieldset>
+</form>
+
+<form id="frmTmp3">
+<fieldset>
+<legend>请输入出生日期：//firefox不支持</legend>
+<input type="number" name="txtYear" class="inputtxt" min="1960" max="1990" step="1" value="1990" />年
+<input type="number" name="txtMonth" class="inputtxt" min="1" max="12" step="1" value="4" />月
+<input type="number" name="txtDay" class="inputtxt" min="1" max="31" step="1" value="23" />日
+<input type="submit" name="frmSubmit3" class="inputbtn" value="提交" />
+</fieldset>
+</form>
+
+
+<form id="frmTmp4">
+<fieldset>
+<legend>选择颜色值：//无法将span设置为一个大矩形以显示颜色</legend>
+<span id="spnColor">
+<input type="range" id="txtR" min="0" max="255" value="255" onChange="setSpnColor()"/>
+<input type="range" id="txtG" min="0" max="255" value="255" onChange="setSpnColor()"/>
+<input type="range" id="txtB" min="0" max="255" value="255" onChange="setSpnColor()"/>
+</span>
+<span id="spnPrev">??????????????</span>
+<P id="pColor">rgb(255,255,255)</P>
+</fieldset>
+</form>
+
+<form id="frmTmp5">
+<fieldset>
+<legend>日期与时间类型输入框：</legend>
+<input type="date" name="txtDate_1" class="inputtxt" />
+<input type="date" name="txtDate_2" class="inputtxt" />
+</fieldset>
+<fieldset>
+<legend>月份与星期类型输入框：</legend>
+<input type="month" name="txtDate_3" class="inputtxt" />
+<input type="week" name="txtDate_4" class="inputtxt" />
+</fieldset>
+<fieldset>
+<legend>日期时间型输入框：</legend>
+<input type="datetime" name="txtDate_5" class="inputtxt" />
+<input type="datetime-local" name="txtDate_6" class="inputtxt" />
+</fieldset>
+</form>
+
+<form id="frmTmp6" onSubmit="return ShowKeyWord();">
+<fieldset>
+<legend>请输入搜索关键字：</legend>
+<input type="search" id="txtKeyWord" class="inputtxt" />
+<input type="submit" name="frmSubmit4" class="inputbtn" value="提交" />
+</fieldset>
+<p id="pTip"></p>
+</form>
+
+</body>
+</html>

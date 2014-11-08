@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="Css/css4.css" rel="stylesheet" type="text/css" />
+<title>input元素新增公用属性</title>
+</head>
+
+<body>
+
+<form id="frmTmp1">
+<fieldset>
+<legend>autofocus属性：</legend>
+<p>姓名：<input type="txet" name="txtName" class="inputtxt" autofocus="true" /></p>
+<p>密码：<input type="password" name="txtPws" class="inputtxt" /></p>
+<p class="p_center">
+<input type="submit" name="frmSubmit" class="inputbtn" value="提交" />
+<input type="reset" name="frmReset" class="inputbtn" value="取消" />
+</p>
+</fieldset>
+</form>
+
+<form id="frmTmp2">
+<fieldset>
+<legend>pattern属性：</legend>输入用户名：
+<input type="text" name="txtAge" class="inputtxt" pattern="^[a-zA-Z]\w{5,7}$" />
+<input type="submit" name="frmSubmit" class="inputbtn" value="提交" />
+<p class="p_color">
+以字母开头，包含字符或数字和下划线，长度在6~8之间
+</p>
+</fieldset>
+</form>
+
+<form id="frmTmp3">
+<fieldset>
+<legend>placehoder属性：</legend>输入邮箱：
+<input type="Email" name="txtEmail" class="inputtxt" placeholder="请正确输入您的邮件地址" />
+<input type="submit" name="frmSubmit" class="inputbtn" value="提交" />
+</fieldset>
+</form>
+
+<form id="frmTmp4">
+<fieldset>
+<legend>required属性：</legend>输入：
+<input type="text" name="txtUserName" class="inputtxt" required="true" />
+<input type="submit" name="frmSubmit" class="inputbtn" value="提交" />
+</fieldset>
+</form>
+
+</body>
+</html>
