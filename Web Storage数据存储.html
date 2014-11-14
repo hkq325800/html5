@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>HTML5中的数据存储</title>
+<script type="text/ecmascript" src="Js/md5.js"></script>
+<script language="javascript" type="text/javascript">
+function $$(id){
+	return document.getElementById(id);
+}
+function txtName_change(v){
+	var strName = v.value;
+	sessionStorage.setItem("strName",strName);
+	var hash = hex_md5(sessionStorage.getItem("strName")); 
+	$$("pStatus").style.display="block";
+	$$("pStatus").innerHTML = hash;	
+}
+/*function btnGetValue_click(){
+	$$("pStatus").style.display = "block";
+	$$("pStatus").innerHTML = hash;	
+}*/
+function pageload(){
+	var strName=localStorage.getItem("keyName");
+	var strPass=localStorage.getItem("keyPass");
+	if(strName){
+		$$("txtName").value = strName;
+	}
+	if(strPass){
+		$$("txtPass").value = strPass;
+	}
+}
+function btnLogin_click(){
+	var strName=$$("txtName").value;
+	var strPass = $$("txtPass").value;
+	localStorage.setItem("keyName",strName);
+	if($$("chkSave").checked){
+		localStorage.setItem("keyPass",strPass);
+	}else {
+		localStorage.removeItem("keyPass");	
+	}
+	$$("spnStatus").className="status";
+	$$("spnStatus").innerHTML="登陆成功"
+}
+</script>
+<style type="text/css">
+li{list-style-type:none}
+</style>
+</head>
+
+<body onload="pageload();">
+<fieldset>
+  <legend>sessionStorage对象保存于读取临时数据</legend>
+  <input name="txtName" type="text" class="inputtxt" onchange="txtName_change(this);" size="30px" autofocus="true"/>
+  <!--<input name="btnGetValue" type="button" class="inputbtn" onchange="btnGetValue_click();" value="读取"/>-->
+  <p id="pStatus"></p>
+</fieldset>
+
+<form id="frmLogin" action="#">
+<fieldset>
+<legend>登录</legend>
+<ul>
+<li class="li_top">
+<span id="spnStatus"></span>
+</li>
+<li>名称：
+<input id="txtName" class="inputtxt" type="text"></span>
+</li>
+<li>密码：
+<input id="txtPass" class="inputtxt" type="password"></span>
+</li>
+<li>
+<input id="chkSave" type="checkbox" />
+是否保存密码
+</li>
+<li class="li_bot">
+<input name="btnLogin" class="inputbtn" value="登录" type="button" onClick="btnLogin_click()"; />
+
+<input name="resLogin" class="inputbtn" value="取消" type="reset"  />
+</li>
+</ul>
+</fieldset>
+</form>
+</body>
+</html>
