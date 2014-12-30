@@ -1,0 +1,81 @@
+<!DOCTYPE html>   
+<head>   
+<meta charset="UTF-8">  
+<title>canvas元素示例</title> 
+<script type="text/javascript" src="16-rgb.js"></script> 
+<script>
+function $$(id){
+        return document.getElementById(id);
+    }
+var startx=0,starty=0;//开始绘制的位置
+var marleft=50,martop=20;//左边上边留出的距离
+function draw(id) {
+    var hang=$$('hang').value,lie=$$('lie').value;
+    var canvas = $$(id);  
+    $$('canvas').width=(25*lie+5+marleft+startx).toString();
+    $$('canvas').height=(25*hang+5+martop+starty).toString();
+    if (canvas == null)  
+        return false;  
+    var context = canvas.getContext('2d');  
+    //context.clearRect(0, 0, , );
+    context.fillStyle = "#EEEEFF";  //画布
+    context.fillRect(0, 0,25*lie+5+startx, 25*hang+5+starty); //画布位置
+    context.fillStyle = "#bbb";  
+	context.strokeStyle = "black";  
+    context.lineWidth=1;    
+	context.fillRect(0,0,25*lie+5+marleft+startx, 25*hang+5+martop+starty);  //矩形位置(x,y,width,height)
+    context.strokeRect(0,0,25*lie+5+marleft+startx, 25*hang+5+martop+starty);//边框 
+    drawtiny(hang,lie);
+    writeline(hang,lie);
+}
+function drawtiny(hang,lie){
+    var min=2,max=28;
+    var c=$$("canvas");
+    for(var i=1;i<=lie;i++){
+        for(var j=1;j<=hang;j++){
+            var ctx=c.getContext("2d");
+            var random=Math.random()*max+min;
+            var xnew=Math.round((random-min)*255/(max-min)*1)/1;
+            var sRgb="RGB("+xnew+",0,0)";
+            var sHexColor = sRgb.colorHex();
+            ctx.fillStyle=sHexColor;
+            ctx.fillRect(startx+marleft+25*i-20,starty+martop+25*j-20,20,20);//矩形的坐标
+            ctx.strokeStyle="#bbb";
+            ctx.rect(startx+marleft+25*i-20,starty+martop+25*j-20,20,20);
+            ctx.stroke();
+        }
+    }
+    /*var c=document.getElementById("canvas");
+    var ctx=c.getContext("2d");
+    ctx.beginPath();
+    ctx.moveTo(0,10);//起始点
+    ctx.lineTo(1000,10);//结束点
+    ctx.stroke();*/
+}
+function writeline(hang,lie){
+    var canvas = $$("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.font = "5px Courier New";
+    ctx.strokeStyle = "blue";
+    for(var i=0;i<lie;i++){
+        if(i%4==0){
+            var text=i+":00";
+            ctx.strokeText(text, marleft+i*25, martop-5);
+        }
+    }
+    for(var j=0;j<hang;j++){
+        var date="12/"+(j+1).toString();
+        ctx.strokeText(date, marleft-35, martop*2+j*25);
+    }
+}
+</script>
+</head>  
+<body onLoad="draw('canvas');">  
+<div>
+行：<input type="text" id="hang" value="6"/>
+列：<input type="text" id="lie" value="24"/>
+<input type="button" id="btn" value="submit" onClick="draw('canvas');"/>
+</div>
+<canvas id="canvas" width="1000" height="400" style="margin:10px 10px"/>  
+</body>  
+</html>
