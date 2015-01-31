@@ -36,7 +36,7 @@ function drawtiny(hang,lie){
             var ctx=c.getContext("2d");
             var random=Math.random()*max+min;
             var xnew=Math.round((random-min)*255/(max-min)*1)/1;
-            var sRgb="RGB("+xnew+",0,0)";
+            var sRgb="RGB("+xnew+",0,125)";
             var sHexColor = sRgb.colorHex();
             ctx.fillStyle=sHexColor;
             ctx.fillRect(startx+marleft+25*i-20,starty+martop+25*j-20,20,20);//矩形的坐标
